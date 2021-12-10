@@ -13,12 +13,23 @@ public String showAlarm();}
 
 public class Monday extends Weekday{
     
-    Monday(){
+    public static String input;
+    public static void main (String[] args){
+        Monday monmon = new Monday();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter time format (HH:MM): ");
-        String input = sc.nextLine(); setAlarm(input);
-    }  
-    public static void main (String[] args){new Monday();}}
+        input = sc.nextLine();
+        String time = "24:00";
+        if (input == "") {
+          monmon.setAlarm(time);
+          System.out.println("the alarm is set for tommorow");
+        }else{
+           monmon.setAlarm(input);
+           System.out.println("I'll wake you up later!");
+        }
+        
+    }
+}
 
 class Weekday implements Alarm {
 
@@ -28,15 +39,13 @@ class Weekday implements Alarm {
     @Override
     public void setAlarm(String time) {     
  
-        Weekday._time = time;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(time_format);
+         Monday mon = new Monday();
+         Weekday._time = time;
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(time_format);
+         LocalTime alarm = LocalTime.parse(time, formatter);     
+         LocalTime now = LocalTime.now();   
+         alarm.isBefore(now);
 
-        LocalTime alarm = LocalTime.parse(time, formatter);     
-        LocalTime now = LocalTime.now();    
-        
-        if (alarm.isBefore(now)) { System.out.println("Wait for the alarm!");}
-        else { System.out.println("Alarm is set for tomorrow!"); }
- 
     }
 
     @Override
