@@ -32,7 +32,7 @@ class adjacent{
 		for(int i = 0; i < num; i++, v++){
 			System.out.println(vertices[v] + " : " + adjlist.get(i));
 		}
-		System.out.println("\n\n\n");
+		System.out.println("\n\n\n\n");
 		
 	}
 }
